@@ -3,6 +3,18 @@ body{
   margin: 0;
   font-family: Montserrat,sans-serif;
 }
+*{
+  //Disable Select
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+
+  //Disable highlight
+  -webkit-tap-highlight-color: transparent;
+  outline: none !important;
+}
 
 .main-content{
   z-index: 0;
@@ -13,12 +25,7 @@ body{
   background: #ff8a8a;
   cursor: pointer;
 
-  //Disable Select
-  user-select: none; /* supported by Chrome and Opera */
- -webkit-user-select: none; /* Safari */
- -khtml-user-select: none; /* Konqueror HTML */
- -moz-user-select: none; /* Firefox */
- -ms-user-select: none; /* Internet Explorer/Edge */
+
 
   #title{
     position: absolute;
