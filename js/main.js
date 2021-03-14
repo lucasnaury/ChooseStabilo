@@ -1,7 +1,20 @@
 $(document).ready(function () {
-  var initialColors = [{name:"Light Pink",hex:"#ff8a8a"},
-                      {name:"Light Blue",hex:"#80ceff"},
-                      {name:"Light Green",hex:"#97ff91"}];
+  var initialColors = [{name:"Jaune Pastel",hex:"#fcdd72"},
+                      {name:"Orange Pastel",hex:"#f68559"},
+                      {name:"Rose Pastel",hex:"#f38fb5"},
+                      {name:"Violet Pastel",hex:"#e7a5db"},
+                      {name:"Cyan Pastel",hex:"#a5f1ef"},
+                      {name:"Vert Pastel",hex:"#85e1af"},
+                      {name:"Vert Foncé",hex:"#036d3f"},
+                      {name:"Vert Clair",hex:"#30d565"},
+                      {name:"Bleu",hex:"#01aef5"},
+                      {name:"Violet",hex:"#551b9b"},
+                      {name:"Rose Foncé",hex:"#f80d8e"},
+                      {name:"Rose",hex:"#f7396f"},
+                      {name:"Rose Orange",hex:"#f63f56"},
+                      {name:"Rouge",hex:"#841a2b"},
+                      {name:"Orange",hex:"#ed7947"},
+                      {name:"Jaune",hex:"#eeff52"},];
   var colors = [...initialColors];
   var wantToRestart = false;
 
@@ -18,6 +31,16 @@ $(document).ready(function () {
         $(".main-content").css("background",selectedColor.hex); //set color
         $("#colorName").html(selectedColor.name); //Set color name
         $("#colorName").css("opacity",1); //Show color name
+        var rgb = hexToRgb(selectedColor.hex);
+        if (rgb.r*0.299 + rgb.g*0.587 + rgb.b*0.114 > 175) { //If light color
+          $("#colorName").css("color","#1b1b1b");
+          $("#title").css("color","#1b1b1b");
+          $("#restart").attr("src", "img/restart-black.svg");
+        }else{
+          $("#colorName").css("color","white");
+          $("#title").css("color","white");
+          $("#restart").attr("src", "img/restart-white.svg");
+        }
       }
 
       if(colors.length >0){
@@ -40,6 +63,15 @@ $(document).ready(function () {
     $("#colorName").css("opacity",0); //Hide color name
 
   });
+
+  function hexToRgb(hex) {
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16)
+  } : null;
+}
 
 
 });
