@@ -52,6 +52,7 @@ $(document).ready(function () {
           $("#colorName").css("opacity",1); //Show color name
           $("#fluo-img").removeClass("hidden"); //Show fluo img
           $("#fluo-img").addClass("show-img"); //Trigger initial anim
+          $("#title").css("top","45%");
           firstClick = false;
         }else{
           $("#fluo-img").removeClass("show-img"); //Remove Initial anim
@@ -93,6 +94,7 @@ $(document).ready(function () {
     firstClick = true;
     colors = [...initialColors]; //Reset colors to initialColors
     $("#title").html("Choose"); //Reset title
+    $("#title").css("top","50%");
     $("#colorName").css("opacity",0); //Hide color name
 
 
