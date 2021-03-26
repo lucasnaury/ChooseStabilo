@@ -101,6 +101,14 @@ body {
   animation-fill-mode: forwards;
 }
 
+.main-content #fluo-img-container #fluo-img.hide-img {
+  animation-name: show-fluo;
+  animation-duration: .5s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-direction: reverse;
+}
+
 .main-content #fluo-img-container #fluo-img.switch-color {
   animation-name: switch-color;
   animation-duration: 300ms;

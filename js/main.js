@@ -90,11 +90,22 @@ $(document).ready(function () {
 
   $('#restart').click(function(){
     wantToRestart = true; //Prevent the other click
+    firstClick = true;
     colors = [...initialColors]; //Reset colors to initialColors
     $("#title").html("Choose"); //Reset title
     $("#colorName").css("opacity",0); //Hide color name
-    $("#fluo-img").css("opacity",0); //Hide fluo img
-    $("#fluo-img").removeClass("show-img");
+
+
+    $("#fluo-img").removeClass("switch-color"); //Reset all animation classes
+    $("#fluo-img").removeClass("show-img"); //Reset all animation classes
+    $("#fluo-img").addClass("hide-img") //Hide fluo image
+    .delay(parseFloat($("#fluo-img").css("animation-duration").split('s')[0]) * 1000) //Transition time in ms
+    .queue(function(){
+      $("#fluo-img").addClass("hidden"); //Hide the image
+      $("#fluo-img").removeClass("hide-img").dequeue();//Remove class at the end of the anim
+    });
+
+
 
   });
 
