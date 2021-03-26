@@ -53,6 +53,55 @@ body{
     transition: opacity 300ms ease-in-out,color 300ms ease-in-out;
     text-shadow: 0px 0px 5px rgba(0,0,0,.2);
   }
+  #fluo-img-container{
+    position: absolute;
+    bottom: 25%;
+    left: 0;
+    height: 50px;
+    width: 100%;
+    pointer-events: none;
+
+    transition: opacity 300ms ease-in-out,color 300ms ease-in-out;
+
+    #fluo-img{
+      position: absolute;
+      top: 0;
+      left: 50%;
+      opacity: 1;
+      transform: translateX(-50%);
+      height: 100%;
+      width: 250px;
+      img{
+        position: absolute;
+        top: 0;
+        height: 50px;
+      }
+      #fluo-body{
+        right: 0;
+      }
+      #fluo-head{
+        left: 0;
+        transform: translateY(-1px);
+      }
+
+      &.hidden{
+        opacity: 0;
+      }
+      &.show-img{
+        animation-name: show-fluo;
+        animation-duration: .5s;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.switch-color{
+        animation-name: switch-color;
+        animation-duration: 300ms;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+      }
+    }
+
+  }
   #restart{
     z-index: 10;
     position: relative;
@@ -63,5 +112,31 @@ body{
     transform: translate(-50%,-50%);
     font-weight: 300;
     color: white;
+  }
+}
+
+@keyframes show-fluo {
+  0%{
+    width: 185px;
+    transform: translateX(-50%) scale(0);
+    opacity: 0;
+  }
+  70%{
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+  100%{
+    width: 250px;
+  }
+}
+@keyframes switch-color {
+  0%{
+    width: 250px;
+  }
+  50%{
+    width: 200px;
+  }
+  100%{
+    width: 250px;
   }
 }

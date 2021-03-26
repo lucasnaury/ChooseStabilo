@@ -14,13 +14,30 @@ $(document).ready(function () {
                       {name:"Rose Orange",hex:"#f63f56"},
                       {name:"Rouge",hex:"#841a2b"},
                       {name:"Orange",hex:"#ed7947"},
-                      {name:"Jaune",hex:"#eeff52"},];
+                      {name:"Jaune",hex:"#eeff52"},
+                      //NEW
+                      {name:"Violet Mignon",hex:"#a26d9b"},
+                      {name:"Bleu / Violet",hex:"#929bd4"},
+                      {name:"Bleu clair",hex:"#7aa8e6"},
+                      {name:"Gris",hex:"#9092a7"},
+                      {name:"Vert Pomme",hex:"#bdd788"},
+                      {name:"Abricot",hex:"#d9ad62"},
+                      {name:"Encore un rose",hex:"#c45a77"},
+                      {name:"Orangé",hex:"#dd7865"},
+                      {name:"Or",hex:"#e8c567"},
+                      {name:"Marron Paillette",hex:"#977c71"},
+                      {name:"Argent",hex:"#72757c"},
+                      {name:"Violet Paillette",hex:"#47263c"},
+
+                    ];
   var colors = [...initialColors];
   var wantToRestart = false;
+  var firstClick = true;
 
   $(".main-content").click(function(){
 
     if(wantToRestart == false){ //If restart btn pressed, don't change color
+
 
       if(colors.length>0){ //If there are stabilo colors remaining
         var randomNum = Math.floor(Math.random() * colors.length); //Random index between 0 and colors.length
@@ -30,7 +47,22 @@ $(document).ready(function () {
 
         $(".main-content").css("background",selectedColor.hex); //set color
         $("#colorName").html(selectedColor.name); //Set color name
-        $("#colorName").css("opacity",1); //Show color name
+
+        if(firstClick == true){
+          $("#colorName").css("opacity",1); //Show color name
+          $("#fluo-img").removeClass("hidden"); //Show fluo img
+          $("#fluo-img").addClass("show-img"); //Trigger initial anim
+          firstClick = false;
+        }else{
+          $("#fluo-img").removeClass("show-img"); //Remove Initial anim
+          $("#fluo-img").addClass("switch-color") //Trigger anim
+          .delay(parseFloat($("#fluo-img").css("animation-duration").split('s')[0]) * 1000) //Transition time in ms
+          .queue(function(){
+            $("#fluo-img").removeClass("switch-color").dequeue();//Remove class at the end of the anim
+          });
+        }
+
+
         var rgb = hexToRgb(selectedColor.hex);
         if (rgb.r*0.299 + rgb.g*0.587 + rgb.b*0.114 > 175) { //If light color
           $("#colorName").css("color","#1b1b1b");
@@ -61,6 +93,8 @@ $(document).ready(function () {
     colors = [...initialColors]; //Reset colors to initialColors
     $("#title").html("Choose"); //Reset title
     $("#colorName").css("opacity",0); //Hide color name
+    $("#fluo-img").css("opacity",0); //Hide fluo img
+    $("#fluo-img").removeClass("show-img");
 
   });
 
